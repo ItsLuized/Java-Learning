@@ -4,8 +4,6 @@ import javax.swing.*;
 public class Methods_II {
 
     public static double pay(double x, double y){
-        System.out.println(x);
-        System.out.println(y);
         double basewage=10;
         double overtimewage = basewage * 1.5;
         double pay=0;
