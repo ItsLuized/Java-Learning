@@ -1,2 +1,1 @@
-# Java-Learning
-This is where everything I learn in Java will go.
+Everything I learn on Java will come here.
