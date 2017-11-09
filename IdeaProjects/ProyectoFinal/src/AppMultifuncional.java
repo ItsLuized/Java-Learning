@@ -1,14 +1,26 @@
 import javax.swing.JOptionPane;
 public class AppMultifuncional {
 
+    /**
+     * @param message
+     * @return Muestra el mensaje "message" con la opcion para ingresar algun dato.
+     */
     public static String InputMessage(String message){
         return JOptionPane.showInputDialog(message);
     }
 
+    /**
+     * Funcion para mostrar mensaje.
+     * @param message Recibe un mensaje el cual va a mostrar.
+     */
     public static void  ShowMessage(String message){
         JOptionPane.showMessageDialog(null, message);
     }
 
+    /**
+     * Funcion para generar un dia aleatorio.
+     * @return Devuelve el dia aleatorio para alojarlo en otra variable.
+     */
     public static int Dia(){
         int x = (int) (Math.random()*29)+1;
         return x;
