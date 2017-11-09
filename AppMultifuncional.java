@@ -1,14 +1,26 @@
 import javax.swing.JOptionPane;
 public class AppMultifuncional {
 
+    /**
+     * @param message
+     * @return Muestra el mensaje "message" con la opcion para ingresar algun dato.
+     */
     public static String InputMessage(String message){
         return JOptionPane.showInputDialog(message);
     }
 
+    /**
+     * Funcion para mostrar mensaje.
+     * @param message Recibe un mensaje el cual va a mostrar.
+     */
     public static void  ShowMessage(String message){
         JOptionPane.showMessageDialog(null, message);
     }
 
+    /**
+     * Funcion para generar un dia aleatorio.
+     * @return Devuelve el dia aleatorio para alojarlo en otra variable.
+     */
     public static int Dia(){
         int x = (int) (Math.random()*29)+1;
         return x;
@@ -33,11 +45,7 @@ public class AppMultifuncional {
         int confirmar = 0;
         int preguntaniños = 0;
         int [] baloto = new int [5];
-        int n1 = 0;
-        int n2 = 0;
-        int n3 = 0;
-        int n4 = 0;
-        int n5 = 0;
+        int [] userInput = new int [5];
         int aciertos = 0;
         float estadia = 0;
         float estadianiño = 0;
@@ -121,6 +129,8 @@ public class AppMultifuncional {
 
         //loop para que esto se repita hasta que el usuario elija salir.
         do {
+
+
 
         /*
          *Aqui pedire al usuario que opcion quiere acceder
@@ -502,109 +512,48 @@ public class AppMultifuncional {
                         }
                     }validate = false;
 
-
-
-
+                        System.out.println("Numeros del Baloto: ");
                         if (confirmar == 1) {
                             for (int i = 0; i < baloto.length; i++) {
                                 baloto[i] = (int) (Math.random() * 44) + 1;
-                                System.out.println(Integer.toString(baloto[i]));
+                                System.out.println((i+1) + ". " + Integer.toString(baloto[i]));
+                            }
+                            System.out.println("--------------------------------------------------------");
+
+
+                            for (int i =0; i < userInput.length; i++){
+                                while(validate != true) {
+                                    try {
+                                        userInput[i] = Integer.parseInt(InputMessage("Digite un numero entre 1 y 45, que desea que sea su n° "+(i+1)));
+                                        if ((userInput[i] < 1) || (userInput[i] > 45)){
+                                            ShowMessage("El numero debe ser entre 1 y 45");
+                                        }
+                                        else{
+                                            System.out.println(userInput[i]);
+                                            validate = true;
+                                        }
+                                    }catch(Exception e){
+                                        ShowMessage("Digite un numero entre 1 y 45");
+                                        validate = false;
+                                    }
+                                }validate = false;
                             }
 
-                            while (validar != true) {
-                                try {
-                                    n1 = Integer.parseInt(InputMessage("Digite el primero numero."));
-                                    if ((n1 < 1) || (n1 > 45)) {
-                                        validar = false;
-                                    } else {
-                                        validar = true;
-                                    }
-                                } catch (Exception e) {
-                                    ShowMessage("Digite un numero.");
+                            for (int i = 0; i < baloto.length; i++){
+                                if (baloto[i] == userInput[i]){
+                                    aciertos ++;
                                 }
                             }
-                            validar = false;
 
-                            while (validar != true) {
-                                try {
-                                    n2 = Integer.parseInt(InputMessage("Digite el segundo numero."));
-                                    if ((n2 < 1) || (n2 > 45)) {
-                                        validar = false;
-                                    } else {
-                                        validar = true;
-                                    }
-                                } catch (Exception e) {
-                                    ShowMessage("Digite un numero.");
-                                }
-                            }
-                            validar = false;
-
-                            while (validar != true) {
-                                try {
-                                    n3 = Integer.parseInt(InputMessage("Digite el tercer numero."));
-                                    if ((n3 < 1) || (n3 > 45)) {
-                                        validar = false;
-                                    } else {
-                                        validar = true;
-                                    }
-                                } catch (Exception e) {
-                                    ShowMessage("Digite un numero.");
-                                }
-                            }
-                            validar = false;
-
-                            while (validar != true) {
-                                try {
-                                    n4 = Integer.parseInt(InputMessage("Digite el cuarto numero."));
-                                    if ((n4 < 1) || (n4 > 45)) {
-                                        validar = false;
-                                    } else {
-                                        validar = true;
-                                    }
-                                } catch (Exception e) {
-                                    ShowMessage("Digite un numero.");
-                                }
-                            }
-                            validar = false;
-
-                            while (validar != true) {
-                                try {
-                                    n5 = Integer.parseInt(InputMessage("Digite el quinto numero."));
-                                    if ((n5 < 1) || (n5 > 45)) {
-                                        validar = false;
-                                    } else {
-                                        validar = true;
-                                    }
-                                } catch (Exception e) {
-                                    ShowMessage("Digite un numero.");
-                                }
-                            }
-                            validar = false;
-
-                            if (baloto[0] == n1) {
-                                aciertos++;
-                            }
-                            if (baloto[1] == n2) {
-                                aciertos++;
-                            }
-                            if (baloto[2] == n3) {
-                                aciertos++;
-                            }
-                            if (baloto[3] == n4) {
-                                aciertos++;
-                            }
-                            if (baloto[4] == n5) {
-                                aciertos++;
-                            }
 
                             if (aciertos == 5) {
                                 ShowMessage("     FELICITACIONES! Se gano el Baloto.\n" +
                                         "Le hemos depositado los 10 millones de premio. ");
                                 saldo += 10000000;
                             } else if (aciertos == 4) {
-                                ShowMessage("      Acerto 4 de los 5 numeros!\n" +
+                                ShowMessage("          Acerto 4 de los 5 numeros!\n" +
                                         "Le hemos depositado 5 millones de premio\n" +
-                                        "Por haber acertado 4 de los 5 numeros.");
+                                        "  Por haber acertado 4 de los 5 numeros.");
                             } else if (aciertos == 3) {
                                 ShowMessage("         Acerto 3 de 5 numeros!\n" +
                                         "Le hemos devuelto lo que pago por el baloto.");
@@ -612,7 +561,9 @@ public class AppMultifuncional {
                                 ShowMessage("Siga Intentando.");
                             }
                         }
-                        else {}
+                        else {
+
+                        }
 
                     break;
 
